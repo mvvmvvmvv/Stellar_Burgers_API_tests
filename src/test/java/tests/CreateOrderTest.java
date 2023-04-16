@@ -1,6 +1,6 @@
 package tests;
 
-import io.qameta.allure.junit4.DisplayName;
+import org.junit.jupiter.api.DisplayName;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import lib.ApiCoreRequests;

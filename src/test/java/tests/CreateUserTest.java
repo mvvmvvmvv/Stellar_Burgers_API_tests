@@ -4,11 +4,10 @@ import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Constants;
 import lib.DataGenerator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.core.IsEqual.equalTo;
-import io.qameta.allure.junit4.DisplayName;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +30,11 @@ public class CreateUserTest {
         responseCreateUser.then().assertThat().body("success", equalTo(true))
                 .and()
                 .statusCode(200);
+
+        apiCoreRequests.makeDeleteRequest(
+                Constants.USER,
+                this.accessToken
+        );
     }
 
     @Test
@@ -51,6 +55,11 @@ public class CreateUserTest {
         responseCreateDuplicateUser.then().assertThat().body("message", equalTo("User already exists"))
                 .and()
                 .statusCode(403);
+
+        apiCoreRequests.makeDeleteRequest(
+                Constants.USER,
+                this.accessToken
+        );
     }
 
     @Test
@@ -70,13 +79,5 @@ public class CreateUserTest {
         responseCreateUser.then().assertThat().body("message", equalTo("Email, password and name are required fields"))
                 .and()
                 .statusCode(403);
-    }
-
-    @AfterEach
-    public void deleteUser() {
-        apiCoreRequests.makeDeleteRequest(
-                Constants.USER,
-                this.accessToken
-        );
     }
 }

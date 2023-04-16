@@ -5,7 +5,7 @@ import lib.*;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 
-import io.qameta.allure.junit4.DisplayName;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

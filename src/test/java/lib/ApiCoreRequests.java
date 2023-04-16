@@ -19,15 +19,17 @@ public class ApiCoreRequests {
                 .then().log().all();
     }
 
-    @Step("Make GET-request with token")
+    @Step("Make DELETE-request")
     public Response makeDeleteRequest(String url, String token) {
         return given()
                 .header("Content-type", "application/json")
-                .get(url)
+                .and()
+                .header("Authorization", token)
+                .delete(url)
                 .andReturn();
     }
 
-    @Step("Make POST-request with token auth and cookie")
+    @Step("Make POST-request")
     public Response makePostRequest(String url, Map<String,String> data) {
         return given()
                 .header("Content-type", "application/json")
@@ -36,7 +38,7 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-    @Step("Make POST-request with token auth and cookie")
+    @Step("Make POST-request with token")
     public ValidatableResponse makePostRequestWithToken(String url, String token, String data) {
         return given()
                 .header("Content-type", "Application/json")
