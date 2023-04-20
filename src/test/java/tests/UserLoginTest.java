@@ -45,9 +45,9 @@ public class UserLoginTest {
                         Constants.LOGIN,
                         loginData
                 );
-        responseCheckLogin.then().assertThat().body("success", equalTo(true))
+        responseCheckLogin.then().assertThat().statusCode(200)
                 .and()
-                .statusCode(200);
+                .body("success", equalTo(true));
     }
 
     @Test
@@ -62,9 +62,9 @@ public class UserLoginTest {
                         Constants.LOGIN,
                         loginData
                 );
-        responseCheckLogin.then().assertThat().body("success", equalTo(false))
+        responseCheckLogin.then().assertThat().statusCode(401)
                 .and()
-                .statusCode(401);
+                .body("success", equalTo(false));
     }
 
     @AfterEach

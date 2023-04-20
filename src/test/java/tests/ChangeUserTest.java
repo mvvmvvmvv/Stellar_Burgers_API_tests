@@ -43,9 +43,9 @@ public class ChangeUserTest {
                 this.accessToken,
                 editData
         );
-        responseEditUser.then().assertThat().body("success", equalTo(true))
+        responseEditUser.then().assertThat().statusCode(200)
                 .and()
-                .statusCode(200);
+                .body("success", equalTo(true));
     }
 
     @Test
@@ -61,9 +61,9 @@ public class ChangeUserTest {
                 "",
                 editData
         );
-        responseEditUser.then().assertThat().body("message", equalTo("You should be authorised"))
+        responseEditUser.then().assertThat().statusCode(401)
                 .and()
-                .statusCode(401);
+                .body("message", equalTo("You should be authorised"));
     }
 
     @AfterEach

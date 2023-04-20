@@ -39,9 +39,9 @@ public class CreateOrderTest {
                 this.accessToken,
                 ingredients
         );
-        responseCreateOrder.assertThat().body("success", equalTo(true))
+        responseCreateOrder.assertThat().statusCode(200)
                 .and()
-                .statusCode(200);
+                .body("success", equalTo(true));
     }
 
     @Test
@@ -52,9 +52,9 @@ public class CreateOrderTest {
                 this.accessToken,
                 ""
         );
-        responseCreateOrder.assertThat().body("message", equalTo("Ingredient ids must be provided"))
+        responseCreateOrder.assertThat().statusCode(400)
                 .and()
-                .statusCode(400);
+                .body("message", equalTo("Ingredient ids must be provided"));
     }
 
     @Test

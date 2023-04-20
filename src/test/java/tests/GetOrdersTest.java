@@ -41,9 +41,9 @@ public class GetOrdersTest {
                 Constants.ORDERS,
                 accessToken
         );
-        responseGetOrder.assertThat().body("success", equalTo(true))
+        responseGetOrder.assertThat().statusCode(200)
                 .and()
-                .statusCode(200);
+                .body("success", equalTo(true));
     }
 
     @Test
@@ -59,9 +59,9 @@ public class GetOrdersTest {
                 Constants.ORDERS,
                 ""
         );
-        responseGetOrder.assertThat().body("message", equalTo("You should be authorised"))
+        responseGetOrder.assertThat().statusCode(401)
                 .and()
-                .statusCode(401);
+                .body("message", equalTo("You should be authorised"));
     }
 
     @AfterEach

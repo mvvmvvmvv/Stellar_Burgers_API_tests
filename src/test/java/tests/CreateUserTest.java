@@ -27,9 +27,9 @@ public class CreateUserTest {
         );
         this.accessToken = responseCreateUser.path("accessToken");
 
-        responseCreateUser.then().assertThat().body("success", equalTo(true))
+        responseCreateUser.then().assertThat().statusCode(200)
                 .and()
-                .statusCode(200);
+                .body("success", equalTo(true));
 
         apiCoreRequests.makeDeleteRequest(
                 Constants.USER,
@@ -52,9 +52,9 @@ public class CreateUserTest {
                 Constants.REGISTER,
                 userData
         );
-        responseCreateDuplicateUser.then().assertThat().body("message", equalTo("User already exists"))
+        responseCreateDuplicateUser.then().assertThat().statusCode(403)
                 .and()
-                .statusCode(403);
+                .body("message", equalTo("User already exists"));
 
         apiCoreRequests.makeDeleteRequest(
                 Constants.USER,
@@ -76,8 +76,8 @@ public class CreateUserTest {
                 Constants.REGISTER,
                 userData
         );
-        responseCreateUser.then().assertThat().body("message", equalTo("Email, password and name are required fields"))
+        responseCreateUser.then().assertThat().statusCode(403)
                 .and()
-                .statusCode(403);
+                .body("message", equalTo("Email, password and name are required fields"));
     }
 }
