@@ -1,5 +1,4 @@
-# Diplom_2
-
+# Stellar_Burgers_API_tests
 This is part 2/3 of my final project on Yandex.Prakticum course "Test automation with Java". 
 
 It is dedicated 
